@@ -1,5 +1,3 @@
-import { sendXtrackyWebhook } from './_xtracky.js';
-
 // Procura o código EMV "copia e cola" do PIX (sempre começa com "000201")
 // em qualquer campo da resposta do gateway, independente do nome do campo.
 function findPixEmv(obj, depth = 0) {
@@ -54,17 +52,6 @@ export default async function handler(req, res) {
       },
     };
 
-    // URL de postback desta transação -> nosso endpoint que repassa o status
-    // para a xTracky. Assim não é preciso configurar webhook no painel da Paradise.
-    const baseUrl = process.env.WEBHOOK_BASE_URL
-      ? process.env.WEBHOOK_BASE_URL.replace(/\/$/, '')
-      : `https://${req.headers.host}`;
-    let postbackUrl = `${baseUrl}/api/paradise-webhook`;
-    if (process.env.PARADISE_WEBHOOK_SECRET) {
-      postbackUrl += `?token=${encodeURIComponent(process.env.PARADISE_WEBHOOK_SECRET)}`;
-    }
-    body.postback_url = postbackUrl;
-
     if (utm) {
       const params = new URLSearchParams(utm);
       const tracking = {};
@@ -98,18 +85,6 @@ export default async function handler(req, res) {
       console.error('[create-pix] PIX EMV não encontrado na resposta:', JSON.stringify(data));
       return res.status(400).json({ error: 'Resposta inválida do gateway' });
     }
-
-    // Notifica a xTracky que a venda foi criada e aguarda pagamento.
-    // amount já vem em centavos do front-end; utm_source é o da URL do cliente.
-    await sendXtrackyWebhook({
-      orderId: data.transaction_id,
-      amount,
-      status: 'waiting_payment',
-      utm_source: body.tracking?.utm_source,
-      leadName: customer?.name,
-      leadEmail: customer?.email,
-      leadPhone: customer?.phone,
-    });
 
     return res.status(200).json({
       pixCode,
