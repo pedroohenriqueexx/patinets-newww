@@ -54,6 +54,17 @@ export default async function handler(req, res) {
       },
     };
 
+    // URL de postback desta transação -> nosso endpoint que repassa o status
+    // para a xTracky. Assim não é preciso configurar webhook no painel da Paradise.
+    const baseUrl = process.env.WEBHOOK_BASE_URL
+      ? process.env.WEBHOOK_BASE_URL.replace(/\/$/, '')
+      : `https://${req.headers.host}`;
+    let postbackUrl = `${baseUrl}/api/paradise-webhook`;
+    if (process.env.PARADISE_WEBHOOK_SECRET) {
+      postbackUrl += `?token=${encodeURIComponent(process.env.PARADISE_WEBHOOK_SECRET)}`;
+    }
+    body.postback_url = postbackUrl;
+
     if (utm) {
       const params = new URLSearchParams(utm);
       const tracking = {};
