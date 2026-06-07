@@ -12,7 +12,7 @@ export async function sendXtrackyWebhook({ orderId, amount, status, utm_source }
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    const payload = { orderId: String(orderId), status, platform: 'CUSTOM' };
+    const payload = { orderId: String(orderId), status };
     if (amount != null) payload.amount = amount;
     if (utm_source) payload.utm_source = utm_source;
 
