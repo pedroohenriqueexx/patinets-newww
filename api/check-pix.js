@@ -1,3 +1,5 @@
+import { sendXtrackyWebhook } from './_xtracky.js';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -19,7 +21,27 @@ export default async function handler(req, res) {
     );
 
     const data = await paradiseRes.json();
-    const status = data.status === 'approved' ? 'COMPLETED' : 'PENDING';
+
+    // TEMPORÁRIO (diagnóstico xTracky): mostra a resposta completa da Paradise
+    // para descobrirmos em quais campos vêm amount e utm_source. Remover depois.
+    console.log('[check-pix] resposta Paradise:', JSON.stringify(data));
+
+    const approved = data.status === 'approved';
+    const status = approved ? 'COMPLETED' : 'PENDING';
+
+    if (approved) {
+      // Pagamento aprovado: notifica a xTracky. orderId casa com o evento
+      // 'waiting_payment' enviado na criação. amount/utm_source são lidos da
+      // resposta da Paradise quando disponíveis (assumindo amount em centavos).
+      const utmSource = data?.tracking?.utm_source || data?.utm_source || undefined;
+      const amount = typeof data?.amount === 'number' ? data.amount : undefined;
+      await sendXtrackyWebhook({
+        orderId: transactionId,
+        amount,
+        status: 'paid',
+        utm_source: utmSource,
+      });
+    }
 
     return res.status(200).json({ status });
   } catch (err) {
