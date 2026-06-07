@@ -12,18 +12,22 @@ export async function sendXtrackyWebhook({ orderId, amount, status, utm_source }
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    const payload = { orderId: String(orderId), status };
+    const payload = { orderId: String(orderId), status, platform: 'CUSTOM' };
     if (amount != null) payload.amount = amount;
     if (utm_source) payload.utm_source = utm_source;
 
-    await fetch('https://api.xtracky.com/api/integrations/api', {
+    const resp = await fetch('https://api.xtracky.com/api/integrations/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
       signal: controller.signal,
     });
+
+    // TEMPORÁRIO (diagnóstico): loga o que foi enviado e o que a xTracky respondeu.
+    const text = await resp.text().catch(() => '');
+    console.log('[xtracky] enviado:', JSON.stringify(payload), '| HTTP', resp.status, '| resp:', text);
   } catch (err) {
-    console.error('[xtracky]', err?.message || err);
+    console.error('[xtracky] erro:', err?.message || err);
   } finally {
     clearTimeout(timeout);
   }
