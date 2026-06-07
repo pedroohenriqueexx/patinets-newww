@@ -34,89 +34,24 @@
   <meta name="twitter:title" content="Império dos Atacados - Ofertas Relâmpago">
   <meta property="og:description" content="As melhores ofertas em eletrônicos, áudio e tecnologia.">
   <meta name="twitter:description" content="As melhores ofertas em eletrônicos, áudio e tecnologia.">
-  <!-- Gateway Override: redireciona chamadas Supabase para Paradise + conversoes xTracky (client-side) -->
+  <!-- Gateway Override: redireciona chamadas Supabase para Paradise -->
   <script>
   (function () {
-    var XTRACKY_API = 'https://api.xtracky.com/api/integrations/api';
-    var LEAD_KEY = 'XTRACKY_LEAD_ID_fe118ab7-9a8f-4cfe-9462-ef488751d550';
-    var orders = {};
-
-    function resolveUtmSource() {
-      try { var ls = localStorage.getItem(LEAD_KEY); if (ls) return ls; } catch (e) {}
-      try {
-        var p = new URLSearchParams(window.location.search);
-        return p.get('utm_source') || p.get('sck') || '';
-      } catch (e) {}
-      return '';
-    }
-
-    function sendXtracky(args) {
-      var utm_source = resolveUtmSource();
-      if (!utm_source) { console.warn('[xTracky] sem utm_source/leadId, conversao nao enviada', args); return; }
-      var payload = {
-        orderId: String(args.orderId),
-        amount: Math.round(args.amount),
-        status: args.status,
-        platform: 'CUSTOM',
-        utm_source: utm_source,
-      };
-      if (args.lead) {
-        if (args.lead.name) payload.leadName = args.lead.name;
-        if (args.lead.email) payload.leadEmail = args.lead.email;
-        if (args.lead.phone) payload.leadPhone = args.lead.phone;
-        if (args.lead.document) payload.leadDocument = args.lead.document;
-      }
-      try {
-        fetch(XTRACKY_API, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true,
-        }).then(function (r) {
-          r.text().catch(function () { return ''; }).then(function (t) {
-            console.log('[xTracky] ' + args.status + ' (' + args.orderId + ') -> ' + r.status, t);
-          });
-        }).catch(function (e) { console.error('[xTracky] erro envio:', e); });
-      } catch (e) { console.error('[xTracky] erro:', e); }
-    }
-
     var _fetch = window.fetch;
     window.fetch = function (url, opts) {
       var u = typeof url === 'string' ? url : (url && url.url) || '';
       if (u.indexOf('/functions/v1/create-pix') !== -1) {
-        var reqBody = {};
-        try { reqBody = JSON.parse((opts && opts.body) || '{}'); } catch (e) {}
         return _fetch('/api/create-pix', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: opts && opts.body,
-        }).then(function (res) {
-          res.clone().json().then(function (data) {
-            if (data && data.transactionId) {
-              var lead = reqBody.customer || {};
-              orders[String(data.transactionId)] = { amount: reqBody.amount, lead: lead };
-              sendXtracky({ orderId: data.transactionId, amount: reqBody.amount, status: 'waiting_payment', lead: lead });
-            }
-          }).catch(function () {});
-          return res;
         });
       }
       if (u.indexOf('/functions/v1/check-pix-status') !== -1) {
-        var checkBody = {};
-        try { checkBody = JSON.parse((opts && opts.body) || '{}'); } catch (e) {}
         return _fetch('/api/check-pix', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: opts && opts.body,
-        }).then(function (res) {
-          res.clone().json().then(function (data) {
-            if (data && data.status === 'COMPLETED') {
-              var oid = String(checkBody.transactionId);
-              var cached = orders[oid] || {};
-              sendXtracky({ orderId: oid, amount: cached.amount || 0, status: 'paid', lead: cached.lead });
-            }
-          }).catch(function () {});
-          return res;
         });
       }
       return _fetch.apply(this, arguments);

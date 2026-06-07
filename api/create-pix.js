@@ -62,6 +62,10 @@ export default async function handler(req, res) {
       if (Object.keys(tracking).length > 0) body.tracking = tracking;
     }
 
+    // Integração nativa: a Paradise envia o postback direto para a xTracky,
+    // que parseia o formato da Paradise e atribui a venda pelo tracking.utm_source (LeadId).
+    body.postback_url = 'https://api.xtracky.com/api/integrations/paradise';
+
     const paradiseRes = await fetch('https://multi.paradisepags.com/api/v1/transaction.php', {
       method: 'POST',
       headers: {
