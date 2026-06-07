@@ -1,3 +1,19 @@
+// Procura o código EMV "copia e cola" do PIX (sempre começa com "000201")
+// em qualquer campo da resposta do gateway, independente do nome do campo.
+function findPixEmv(obj, depth = 0) {
+  if (!obj || typeof obj !== 'object' || depth > 4) return null;
+  for (const value of Object.values(obj)) {
+    if (typeof value === 'string' && value.replace(/\s/g, '').startsWith('000201')) {
+      return value.trim();
+    }
+    if (value && typeof value === 'object') {
+      const nested = findPixEmv(value, depth + 1);
+      if (nested) return nested;
+    }
+  }
+  return null;
+}
+
 function generateCPF() {
   const n = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10));
   let sum = n.reduce((acc, v, i) => acc + v * (10 - i), 0);
@@ -61,8 +77,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: data.message || 'Erro ao gerar PIX' });
     }
 
+    // O front-end gera o QR Code a partir deste texto, então ele PRECISA ser o
+    // "copia e cola" do PIX (EMV que começa com "000201"), não uma imagem/URL.
+    const pixCode = findPixEmv(data) || data.qr_code;
+
+    if (!pixCode) {
+      console.error('[create-pix] PIX EMV não encontrado na resposta:', JSON.stringify(data));
+      return res.status(400).json({ error: 'Resposta inválida do gateway' });
+    }
+
     return res.status(200).json({
-      pixCode: data.qr_code,
+      pixCode,
       transactionId: String(data.transaction_id),
     });
   } catch (err) {
