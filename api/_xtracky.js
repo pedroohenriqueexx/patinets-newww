@@ -5,16 +5,29 @@
 // status: 'waiting_payment' (PIX gerado) | 'paid' (pagamento aprovado)
 //
 // Nunca lança: falha no tracking não pode quebrar o fluxo de pagamento.
-export async function sendXtrackyWebhook({ orderId, amount, status, utm_source }) {
+export async function sendXtrackyWebhook({
+  orderId,
+  amount,
+  status,
+  utm_source,
+  leadName,
+  leadEmail,
+  leadPhone,
+  leadDocument,
+}) {
   if (!orderId || !status) return;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    const payload = { orderId: String(orderId), status };
+    const payload = { orderId: String(orderId), status, platform: 'CUSTOM' };
     if (amount != null) payload.amount = amount;
     if (utm_source) payload.utm_source = utm_source;
+    if (leadName) payload.leadName = leadName;
+    if (leadEmail) payload.leadEmail = leadEmail;
+    if (leadPhone) payload.leadPhone = leadPhone;
+    if (leadDocument) payload.leadDocument = leadDocument;
 
     const resp = await fetch('https://api.xtracky.com/api/integrations/api', {
       method: 'POST',

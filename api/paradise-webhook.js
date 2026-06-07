@@ -30,6 +30,10 @@ export default async function handler(req, res) {
         amount: typeof data.amount === 'number' ? data.amount : undefined,
         status: xtrackyStatus,
         utm_source: data.tracking?.utm_source,
+        leadName: data.customer?.name,
+        leadEmail: data.customer?.email,
+        leadPhone: data.customer?.phone,
+        leadDocument: data.customer?.document,
       });
     }
 

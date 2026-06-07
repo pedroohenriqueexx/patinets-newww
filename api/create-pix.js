@@ -106,6 +106,9 @@ export default async function handler(req, res) {
       amount,
       status: 'waiting_payment',
       utm_source: body.tracking?.utm_source,
+      leadName: customer?.name,
+      leadEmail: customer?.email,
+      leadPhone: customer?.phone,
     });
 
     return res.status(200).json({
