@@ -1,3 +1,5 @@
+import { sendXtracky } from './_xtracky.js';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -19,7 +21,20 @@ export default async function handler(req, res) {
     );
 
     const data = await paradiseRes.json();
-    const status = data.status === 'approved' ? 'COMPLETED' : 'PENDING';
+    const approved = data.status === 'approved';
+    const status = approved ? 'COMPLETED' : 'PENDING';
+
+    if (approved) {
+      // Dispara paid (fallback via polling). customer_data é a cópia do JSON
+      // enviado na criação, então o LeadId está em customer_data.tracking.
+      const tracking = data.customer_data?.tracking || {};
+      await sendXtracky({
+        orderId: transactionId,
+        amount: data.amount,
+        status: 'paid',
+        utm_source: tracking.utm_source || tracking.sck,
+      });
+    }
 
     return res.status(200).json({ status });
   } catch (err) {

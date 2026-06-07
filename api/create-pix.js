@@ -1,3 +1,5 @@
+import { sendXtracky } from './_xtracky.js';
+
 // Procura o código EMV "copia e cola" do PIX (sempre começa com "000201")
 // em qualquer campo da resposta do gateway, independente do nome do campo.
 function findPixEmv(obj, depth = 0) {
@@ -62,10 +64,6 @@ export default async function handler(req, res) {
       if (Object.keys(tracking).length > 0) body.tracking = tracking;
     }
 
-    // Integração nativa: a Paradise envia o postback direto para a xTracky,
-    // que parseia o formato da Paradise e atribui a venda pelo tracking.utm_source (LeadId).
-    body.postback_url = 'https://api.xtracky.com/api/integrations/paradise';
-
     const paradiseRes = await fetch('https://multi.paradisepags.com/api/v1/transaction.php', {
       method: 'POST',
       headers: {
@@ -89,6 +87,15 @@ export default async function handler(req, res) {
       console.error('[create-pix] PIX EMV não encontrado na resposta:', JSON.stringify(data));
       return res.status(400).json({ error: 'Resposta inválida do gateway' });
     }
+
+    // Dispara waiting_payment para a xTracky (mesmo formato das edge functions
+    // do projeto que funciona: sem platform, utm_source = LeadId do localStorage).
+    await sendXtracky({
+      orderId: data.transaction_id,
+      amount,
+      status: 'waiting_payment',
+      utm_source: body.tracking?.utm_source || body.tracking?.sck,
+    });
 
     return res.status(200).json({
       pixCode,

@@ -34,9 +34,29 @@
   <meta name="twitter:title" content="Império dos Atacados - Ofertas Relâmpago">
   <meta property="og:description" content="As melhores ofertas em eletrônicos, áudio e tecnologia.">
   <meta name="twitter:description" content="As melhores ofertas em eletrônicos, áudio e tecnologia.">
-  <!-- Gateway Override: redireciona chamadas Supabase para Paradise -->
+  <!-- Gateway Override: redireciona chamadas Supabase para Paradise + injeta LeadId da xTracky -->
   <script>
   (function () {
+    var LEAD_KEY = 'XTRACKY_LEAD_ID_fe118ab7-9a8f-4cfe-9462-ef488751d550';
+    var LEAD_RE = /^(TT|XT|FB|GG|YT|KW)-/i;
+
+    function injectLead(rawBody) {
+      try {
+        var parsed = JSON.parse(rawBody || '{}');
+        var lead = '';
+        try { lead = localStorage.getItem(LEAD_KEY) || ''; } catch (e) {}
+        if (lead && LEAD_RE.test(lead)) {
+          var sp = new URLSearchParams(parsed.utm || '');
+          var cur = sp.get('utm_source') || '';
+          if (!cur || !LEAD_RE.test(cur)) sp.set('utm_source', lead);
+          if (!sp.get('sck')) sp.set('sck', lead);
+          parsed.utm = sp.toString();
+          return JSON.stringify(parsed);
+        }
+      } catch (e) {}
+      return rawBody;
+    }
+
     var _fetch = window.fetch;
     window.fetch = function (url, opts) {
       var u = typeof url === 'string' ? url : (url && url.url) || '';
@@ -44,7 +64,7 @@
         return _fetch('/api/create-pix', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: opts && opts.body,
+          body: injectLead(opts && opts.body),
         });
       }
       if (u.indexOf('/functions/v1/check-pix-status') !== -1) {
