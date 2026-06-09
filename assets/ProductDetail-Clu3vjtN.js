@@ -1,18 +1,155 @@
 const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/ChatDrawer-SDQPXaWN.js","assets/ui-vendor-DNK4Kx5K.js","assets/react-vendor-UyDoh-6B.js","assets/CartDrawer-DDKHABR9.js","assets/useProducts-CGPpKjZu.js","assets/index-CXKKGSbM.js","assets/index-_En6CBFw.css"])))=>i.map(i=>d[i]);
 import{_ as ue,u as fe,a as R}from"./index-CXKKGSbM.js";import{j as e,X as se,o as C,z as B,E as pe,F as te,G as W,r as q,I as K,J as ge,Z as Y,s as je,T as Z,K as be,L as Ne,p as ve,M as we,N as ke}from"./ui-vendor-DNK4Kx5K.js";import{s as x,u as ye,a as Ce,g as O}from"./useProducts-CGPpKjZu.js";import{T as Se,t as J,E as Q}from"./TikTokLoader-BvwVHuTL.js";import{r,f as Ee,e as Me}from"./react-vendor-UyDoh-6B.js";import{D as Te,a as Re,b as Ae,c as Fe,d as Ie,m as i,A as ee,C as De}from"./CartDrawer-DDKHABR9.js";import"./supabase-DxXGaCL6.js";const $e={hidden:{opacity:0},visible:{opacity:1,transition:{staggerChildren:.08,delayChildren:.1}}},z={hidden:{opacity:0,y:20},visible:{opacity:1,y:0}},Pe=({open:p,onOpenChange:m})=>e.jsx(Te,{open:p,onOpenChange:m,children:e.jsxs(Re,{className:"max-h-[85vh]",children:[e.jsx(Ae,{className:"border-b border-border pb-4",children:e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsx(Fe,{className:"text-lg font-bold",children:"Sobre a Loja"}),e.jsx(Ie,{asChild:!0,children:e.jsx(i.button,{className:"rounded-full p-1 hover:bg-secondary",whileTap:{scale:.9},whileHover:{rotate:90},children:e.jsx(se,{className:"w-5 h-5"})})})]})}),e.jsxs(i.div,{className:"px-4 py-4 overflow-y-auto",variants:$e,initial:"hidden",animate:"visible",children:[e.jsxs(i.div,{variants:z,className:"flex items-center gap-4 mb-6",children:[e.jsx(i.div,{className:"w-16 h-16 rounded-full overflow-hidden border-2 border-tiktok-red/20 bg-secondary flex items-center justify-center",whileHover:{scale:1.05},children:e.jsx("img",{src:x.logo,alt:x.name,className:"w-14 h-14 object-cover rounded-full"})}),e.jsxs("div",{className:"flex-1",children:[e.jsx("h3",{className:"text-lg font-bold text-foreground",children:x.name}),e.jsxs("div",{className:"flex items-center gap-2 mt-1",children:[e.jsxs("div",{className:"flex items-center gap-1",children:[e.jsx(C,{className:"w-4 h-4 fill-tiktok-rating text-tiktok-rating"}),e.jsx("span",{className:"text-sm font-medium",children:x.rating})]}),e.jsx("span",{className:"text-muted-foreground",children:"•"}),e.jsxs("span",{className:"text-sm text-tiktok-success font-medium",children:[x.positiveRate," positivas"]})]})]})]}),e.jsx(i.div,{variants:z,className:"grid grid-cols-3 gap-4 mb-6",children:[{icon:B,value:String(x.productCount),label:"Produtos",color:"text-tiktok-red"},{icon:C,value:String(x.rating),label:"Avaliação",color:"text-tiktok-rating"},{icon:pe,value:x.responseTime,label:"Resposta",color:"text-tiktok-success"}].map((d,l)=>e.jsxs(i.div,{className:"bg-secondary rounded-lg p-3 text-center",whileHover:{scale:1.05,y:-2},children:[e.jsx(d.icon,{className:`w-5 h-5 mx-auto mb-1 ${d.color}`}),e.jsx("p",{className:"text-lg font-bold text-foreground",children:d.value}),e.jsx("p",{className:"text-[11px] text-muted-foreground",children:d.label})]},l))}),e.jsxs(i.div,{variants:z,className:"mb-6",children:[e.jsx("h4",{className:"text-sm font-bold text-foreground mb-2",children:"Sobre nós"}),e.jsx("p",{className:"text-sm text-muted-foreground leading-relaxed",children:x.description})]}),e.jsxs(i.div,{variants:z,className:"space-y-3",children:[e.jsx("h4",{className:"text-sm font-bold text-foreground mb-2",children:"Garantias"}),[{icon:te,title:"Garantia de 7 dias",desc:"Devolução e reembolso garantidos",color:"text-tiktok-success"},{icon:B,title:"Entrega segura",desc:"Embalagem reforçada e rastreável",color:"text-tiktok-red"}].map((d,l)=>e.jsxs(i.div,{className:"flex items-center gap-3 bg-secondary/50 rounded-lg p-3",whileHover:{x:4},children:[e.jsx(d.icon,{className:`w-5 h-5 ${d.color}`}),e.jsxs("div",{children:[e.jsx("p",{className:"text-sm font-medium text-foreground",children:d.title}),e.jsx("p",{className:"text-xs text-muted-foreground",children:d.desc})]})]},l))]})]})]})}),ze=10,Le=({images:p})=>{
-const m=r.useMemo(()=>p.slice(0,ze),[p]),d=m.join("|"),[l,j]=r.useState(0),[S,E]=r.useState(new Set),[M,y]=r.useState(!0),v=r.useRef(0),b=r.useRef(0),A=r.useRef(!1),F=r.useRef(0),I=r.useRef(null);
+const m=r.useMemo(()=>p.slice(0,ze),[p]),d=m.join("|"),[l,j]=r.useState(0),[S,E]=r.useState(new Set),[M,y]=r.useState(!0),v=r.useRef(0),b=r.useRef(0),A=r.useRef(!1),F=r.useRef(0),I=r.useRef(null),X=r.useRef(!1);
 r.useEffect(()=>{j(0),E(new Set),y(!0)},[d]);
 r.useEffect(()=>{const o=I.current;if(!o)return;if(o.tagName==="VIDEO"){if(l===1){o.muted=M,o.play().catch(()=>{})}else{o.pause()}}},[l,M]);
-const L=o=>{E(n=>new Set(n).add(o))},f=o=>typeof o=="string"&&o.toLowerCase().includes(".mp4"),D=()=>{const o=I.current;if(o&&o.tagName==="VIDEO"){o.muted=!M,y(!M),o.volume=1,o.play().catch(()=>{})}},$=o=>{if(o.target&&o.target.tagName==="VIDEO")return;v.current=o.touches[0].clientX},G=o=>{if(o.target&&o.target.tagName==="VIDEO")return;b.current=o.touches[0].clientX},ae=o=>{if(o&&o.target&&o.target.tagName==="VIDEO")return;const n=v.current-b.current,t=50;n>t&&l<m.length-1?j(l+1):n<-t&&l>0&&j(l-1)},V=o=>{if(o.target&&o.target.tagName==="VIDEO")return;A.current=!0,F.current=o.clientX},ne=o=>{if(o.target&&o.target.tagName==="VIDEO")return;A.current&&(b.current=o.clientX)},re=o=>{if(o&&o.target&&o.target.tagName==="VIDEO")return;if(!A.current)return;A.current=!1;const n=F.current-b.current,t=50;n>t&&l<m.length-1?j(l+1):n<-t&&l>0&&j(l-1)};
+const L=o=>{E(n=>new Set(n).add(o))},f=o=>typeof o=="string"&&o.toLowerCase().includes(".mp4"),D=()=>{const o=I.current;if(o&&o.tagName==="VIDEO"){o.muted=!M,y(!M),o.volume=1,o.play().catch(()=>{})}},$=o=>{
+    if(o.target&&["VIDEO","BUTTON","SVG","PATH","DIV"].includes(o.target.tagName)&&o.target.closest&&o.target.closest("[data-no-swipe]")){
+        X.current=!0;
+        return
+    }
+    X.current=!1;
+    v.current=o.touches[0].clientX
+},
+G=o=>{
+    if(X.current)return;
+    b.current=o.touches[0].clientX
+},
+ae=o=>{
+    if(X.current){
+        X.current=!1;
+        return
+    }
+    const n=v.current-b.current,t=50;
+    n>t&&l<m.length-1?j(l+1):n<-t&&l>0&&j(l-1)
+},
+V=o=>{
+    if(o.target&&o.target.closest&&o.target.closest("[data-no-swipe]")){
+        X.current=!0;
+        return
+    }
+    X.current=!1;
+    A.current=!0;
+    F.current=o.clientX
+},
+ne=o=>{
+    if(X.current)return;
+    A.current&&(b.current=o.clientX)
+},
+re=o=>{
+    if(X.current){
+        X.current=!1;
+        A.current=!1;
+        return
+    }
+    if(!A.current)return;
+    A.current=!1;
+    const n=F.current-b.current,t=50;
+    n>t&&l<m.length-1?j(l+1):n<-t&&l>0&&j(l-1)
+};
 return e.jsxs("div",{className:"relative w-full bg-background",children:[
 e.jsx("div",{className:"w-full aspect-square overflow-hidden cursor-grab active:cursor-grabbing",onTouchStart:$,onTouchMove:G,onTouchEnd:ae,onMouseDown:V,onMouseMove:ne,onMouseUp:re,onMouseLeave:re,children:e.jsx("div",{className:"flex h-full select-none transition-transform duration-300 ease-out",style:{transform:`translateX(-${l*100}%)`},children:m.map((o,n)=>e.jsxs("div",{className:"w-full h-full flex-shrink-0 flex items-center justify-center bg-background relative group",children:[
 f(o)?e.jsxs("div",{className:"absolute inset-0 bg-black",children:[
-e.jsx("video",{ref:t=>{n===l&&(I.current=t)},src:o,poster:"https://i.ibb.co/dsLNhxwx/ft3carro.avif",className:"w-full h-full object-contain",autoPlay:n===l,muted:M,loop:!0,playsInline:!0,preload:"auto",onLoadedData:()=>L(n),onCanPlay:()=>L(n),onClick:t=>{t.stopPropagation()},onTouchStart:t=>{t.stopPropagation()},onTouchMove:t=>{t.stopPropagation()},onTouchEnd:t=>{t.stopPropagation()}}),
+e.jsx("video",{
+    "data-no-swipe":!0,
+    ref:t=>{n===l&&(I.current=t)},
+    src:o,
+    poster:"https://i.ibb.co/dsLNhxwx/ft3carro.avif",
+    className:"w-full h-full object-contain",
+    autoPlay:n===l,
+    muted:M,
+    loop:!0,
+    playsInline:!0,
+    preload:"auto",
+    onLoadedData:()=>L(n),
+    onCanPlay:()=>L(n),
+    onClick:t=>{
+        t.preventDefault();
+        t.stopPropagation()
+    },
+    onTouchStart:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    },
+    onTouchMove:t=>{
+        t.preventDefault();
+        t.stopPropagation()
+    },
+    onTouchEnd:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    }
+}),
 e.jsx("div",{className:"absolute top-0 left-0 right-0 flex items-center justify-between p-3 bg-gradient-to-b from-black/60 to-transparent opacity-100",children:e.jsxs("div",{className:"flex items-center justify-between w-full",children:[
 e.jsx("span",{className:"bg-tiktok-red text-white text-[10px] px-2 py-0.5 rounded-full font-bold",children:"VIDEO"}),
-e.jsx("button",{onClick:t=>{t.stopPropagation(),D()},onTouchStart:t=>t.stopPropagation(),className:"w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white",children:M?"🔇":"🔊"})
+e.jsx("button",{
+    "data-no-swipe":!0,
+    onClick:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0;
+        D()
+    },
+    onTouchStart:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    },
+    onTouchEnd:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0;
+        D()
+    },
+    className:"w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white",
+    children:M?"🔇":"🔊"
+})
 ]})}),
-e.jsx("button",{onClick:t=>{t.stopPropagation();const s=I.current;s&&(s.paused?s.play().catch(()=>{}):s.pause())},onTouchStart:t=>t.stopPropagation(),className:"absolute inset-0 flex items-center justify-center",children:e.jsx("div",{className:"w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white text-2xl",children:"▶"})})
+e.jsx("button",{
+    "data-no-swipe":!0,
+    onClick:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        const s=I.current;
+        if(s){
+            s.muted=!1;
+            s.volume=1;
+            s.play().catch(()=>{})
+        }
+    },
+    onTouchStart:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    },
+    onTouchMove:t=>{
+        t.preventDefault();
+        t.stopPropagation()
+    },
+    onTouchEnd:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0;
+        const s=I.current;
+        if(s){
+            s.muted=!1;
+            s.volume=1;
+            s.play().catch(()=>{})
+        }
+    },
+    onMouseDown:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    },
+    className:"absolute inset-0 flex items-center justify-center",
+    children:e.jsx("div",{
+        className:"w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white text-2xl",
+        children:"▶"
+    })
+})
 ]}):(()=>{const t=n===0?{fetchPriority:"high"}:{};return e.jsx("img",{src:o,alt:`Produto ${n+1}`,className:"w-full h-full object-contain pointer-events-none",draggable:!1,loading:"eager",decoding:n===0?"sync":"async",...t,width:400,height:400,onLoad:()=>L(n)})})(),
 n!==0&&!S.has(n)&&e.jsx("div",{className:"absolute inset-0 flex items-center justify-center bg-secondary",children:e.jsx(Se,{size:"md"})})
 ]},n))})}),
