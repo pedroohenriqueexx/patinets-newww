@@ -98,34 +98,18 @@ M&&e.jsx("button",{
         t.preventDefault();
         t.stopPropagation();
         X.current=!0;
-        y(!1);
         const s=I.current;
         if(s){
             s.muted=!1;
             s.volume=1;
             s.play().catch(()=>{})
         }
+        y(!1)
     },
     onTouchStart:t=>{
         t.preventDefault();
         t.stopPropagation();
         X.current=!0
-    },
-    onTouchMove:t=>{
-        t.preventDefault();
-        t.stopPropagation()
-    },
-    onTouchEnd:t=>{
-        t.preventDefault();
-        t.stopPropagation();
-        X.current=!0;
-        y(!1);
-        const s=I.current;
-        if(s){
-            s.muted=!1;
-            s.volume=1;
-            s.play().catch(()=>{})
-        }
     },
     onMouseDown:t=>{
         t.preventDefault();
