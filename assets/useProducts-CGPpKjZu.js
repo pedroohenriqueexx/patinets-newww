@@ -7,10 +7,15 @@ function x(r) { if (typeof window > "u") return r; const i = window.location.sea
 
     images: [
         "https://i.ibb.co/8DXM81ph/ft1carr.avif",
-        "COLE_AQUI_A_URL_DA_IMAGEM_2.webp",
-        "COLE_AQUI_A_URL_DA_IMAGEM_3.webp",
-        "COLE_AQUI_A_URL_DA_IMAGEM_4.webp",
-        "COLE_AQUI_A_URL_DA_IMAGEM_5.webp"
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aiwa-video-1Aa2KsaDlVEEmu8Zuep6OEHxgRZr2X.mp4",
+        "https://i.ibb.co/Cqv2W5M/640.avif",
+        "https://i.ibb.co/dsLNhxwx/ft3carro.avif",
+        "https://i.ibb.co/VWsJDC1Q/ft4carr.avif",
+        "https://i.ibb.co/Dg9jnZm9/ft5carr.avif",
+        "https://i.ibb.co/wNv5ZQJy/ft6carr.avif",
+        "https://i.ibb.co/235bJ9NC/ft7carr.avif",
+        "https://i.ibb.co/YBBr9nXf/ft8carr.avif",
+        "https://i.ibb.co/hF5mQMYP/ft9carr.avif"
     ],
 
     soldCount: 1987,
@@ -57,8 +62,9 @@ function x(r) { if (typeof window > "u") return r; const i = window.location.sea
             date: "18 mai 2026",
             text: "Caixa absurda! O som é muito forte, grave pesado e não distorce mesmo no volume alto. Usei no churrasco aqui em casa e todo mundo perguntou onde comprei.",
             photos: [
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_1.webp",
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_2.webp"
+                "https://i.ibb.co/G4j5KJrk/imgi-258-61m-Yh0-Udd-OL-Xlb16bv3l0gb-Wn-P7306v-Pw-CN3q34-G3.avif",
+                "https://i.ibb.co/cc3bZr3m/imgi-264-71-Hg-DSs-H1-IL-R0-F72b-Vm-K8-XOup2-Jp4uw6o-Ba-TMy-Cj-Y.avif",
+                "https://i.ibb.co/vCKS9xjr/imgi-260-71-F6-Mbl6-DFL-u-Gm6qd-Ad-Hvqhijku09-Rc-UWomb-VRNSC.avif"
             ],
             helpfulCount: 37
         },
@@ -70,8 +76,8 @@ function x(r) { if (typeof window > "u") return r; const i = window.location.sea
             date: "11 mai 2026",
             text: "Produto chegou bem embalado, funcionando perfeito. A potência dela impressiona bastante e as luzes deixam o ambiente muito bonito.",
             photos: [
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_3.webp",
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_4.webp"
+                "https://i.ibb.co/sd5X1FC2/imgi-272-71u-XFla-C8m-L-3d-CWxs-Ws-E63-J1-Nz-SNso-Pz0-MDVm-An-Ee.avif",
+                "https://i.ibb.co/ynZRS2Gj/imgi-59-712-5c-OS-b-L-b9-X80m75-YJ78-Im4zhxp-Vkt-Vv-UEDWER.avif"
             ],
             helpfulCount: 22
         },
@@ -83,7 +89,7 @@ function x(r) { if (typeof window > "u") return r; const i = window.location.sea
             date: "04 mai 2026",
             text: "Gostei muito da caixa. Som alto, acabamento bonito e conexão Bluetooth rápida. Só achei ela grande, mas pela potência faz sentido.",
             photos: [
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_5.webp"
+                "https://i.ibb.co/zTdgc99H/imgi-276-71ymca-Oq-QOL-M4miwgz-G1-Mvsz-XK9-Mjkl2tvs-MW8t3-L.avif"
             ],
             helpfulCount: 18
         },
@@ -95,10 +101,21 @@ function x(r) { if (typeof window > "u") return r; const i = window.location.sea
             date: "27 abr 2026",
             text: "A torre é muito top. Grave forte, luz RGB bonita e volume muito alto. Comprei para eventos pequenos e atendeu muito bem.",
             photos: [
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_6.webp",
-                "COLE_AQUI_A_URL_DA_FOTO_REVIEW_7.webp"
+                "https://i.ibb.co/SXtnRGfL/imgi-266-71x-Ekl-UNJk-L-Ccw-T9-MFc3-Bsi-CCh-IBSILm-OE2-QFdd-O3.avif"
             ],
             helpfulCount: 41
+        },
+        {
+            id: "aiwa-torre-review-5",
+            name: "Juliano Costa",
+            avatar: "https://randomuser.me/api/portraits/men/61.jpg",
+            rating: 5,
+            date: "21 abr 2026",
+            text: "Excelente custo-benefício. A construção é robusta, o Bluetooth conecta rápido e o som preenche fácil o ambiente. Recomendo demais.",
+            photos: [
+                "https://i.ibb.co/svLbJfLV/imgi-270-71nb-BDHT4-GL-Y7u-FZh5q0a382493-Uat-QN1-BCm-Qm-Itu.avif"
+            ],
+            helpfulCount: 29
         }
     ],
 
