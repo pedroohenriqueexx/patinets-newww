@@ -73,31 +73,6 @@ e.jsx("button",{
         t.preventDefault();
         t.stopPropagation();
         X.current=!0;
-        D();
-        y(!1)
-    },
-    onTouchStart:t=>{
-        t.preventDefault();
-        t.stopPropagation();
-        X.current=!0
-    },
-    onTouchEnd:t=>{
-        t.preventDefault();
-        t.stopPropagation();
-        X.current=!0;
-        D();
-        y(!1)
-    },
-    className:"w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white",
-    children:M?"🔇":"🔊"
-})
-]})}),
-M&&e.jsx("button",{
-    "data-no-swipe":!0,
-    onClick:t=>{
-        t.preventDefault();
-        t.stopPropagation();
-        X.current=!0;
         const s=I.current;
         if(s){
             s.muted=!1;
@@ -111,14 +86,39 @@ M&&e.jsx("button",{
         t.stopPropagation();
         X.current=!0
     },
+    className:"w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white",
+    children:M?"🔇":"🔊"
+})
+]})}),
+e.jsx("button",{
+    "data-no-swipe":!0,
+    onClick:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0;
+        const s=I.current;
+        if(s){
+            s.muted=!1;
+            s.volume=1;
+            s.play().catch(()=>{})
+        }
+        y(!1);
+        t.currentTarget.style.display="none"
+    },
+    onTouchStart:t=>{
+        t.preventDefault();
+        t.stopPropagation();
+        X.current=!0
+    },
     onMouseDown:t=>{
         t.preventDefault();
         t.stopPropagation();
         X.current=!0
     },
-    className:"absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-20",
+    className:"absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-[9999] pointer-events-auto",
+    style:{width:"80px",height:"80px"},
     children:e.jsx("div",{
-        className:"w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white text-2xl",
+        className:"w-20 h-20 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-4xl shadow-lg border border-white/40",
         children:"▶"
     })
 })
