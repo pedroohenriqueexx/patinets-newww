@@ -136,7 +136,7 @@ e.jsx("button",{
         transform:"translate(-50%,-50%)",
         width:"88px",
         height:"88px",
-        border:"2px solid rgba(255,255,255,.9)",
+        border:"0",
         borderRadius:"9999px",
         background:"linear-gradient(135deg,rgba(0,242,234,.92),rgba(0,0,0,.88) 45%,rgba(255,0,80,.92))",
         color:"#fff",
@@ -162,7 +162,7 @@ e.jsx("button",{
             fontSize:"34px",
             lineHeight:"64px",
             paddingLeft:"5px",
-            boxShadow:"inset 0 0 0 1px rgba(255,255,255,.18)"
+            boxShadow:"inset 0 0 18px rgba(255,255,255,.08)"
         },
         children:"▶"
     })
