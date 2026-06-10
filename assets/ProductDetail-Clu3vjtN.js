@@ -115,12 +115,28 @@ e.jsx("button",{
         t.stopPropagation();
         X.current=!0
     },
-    className:"absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-[9999] pointer-events-auto",
-    style:{width:"80px",height:"80px",zIndex:9999},
-    children:e.jsx("div",{
-        className:"w-20 h-20 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-4xl shadow-lg border border-white/40",
-        children:"▶"
-    })
+    style:{
+        position:"absolute",
+        left:"50%",
+        top:"50%",
+        transform:"translate(-50%,-50%)",
+        width:"86px",
+        height:"86px",
+        border:"0",
+        borderRadius:"9999px",
+        background:"rgba(0,0,0,.75)",
+        color:"#fff",
+        fontSize:"42px",
+        lineHeight:"86px",
+        textAlign:"center",
+        zIndex:2147483647,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+        boxShadow:"0 8px 30px rgba(0,0,0,.45)",
+        pointerEvents:"auto"
+    },
+    children:"▶"
 })
 ]}):(()=>{const t=n===0?{fetchPriority:"high"}:{};return e.jsx("img",{src:o,alt:`Produto ${n+1}`,className:"w-full h-full object-contain pointer-events-none",draggable:!1,loading:"eager",decoding:n===0?"sync":"async",...t,width:400,height:400,onLoad:()=>L(n)})})(),
 !f(o)&&n!==0&&!S.has(n)&&e.jsx("div",{className:"absolute inset-0 flex items-center justify-center bg-secondary",children:e.jsx(Se,{size:"md"})})
