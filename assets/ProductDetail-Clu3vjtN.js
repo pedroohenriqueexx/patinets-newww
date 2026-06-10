@@ -116,14 +116,14 @@ e.jsx("button",{
         X.current=!0
     },
     className:"absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-[9999] pointer-events-auto",
-    style:{width:"80px",height:"80px"},
+    style:{width:"80px",height:"80px",zIndex:9999},
     children:e.jsx("div",{
         className:"w-20 h-20 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-4xl shadow-lg border border-white/40",
         children:"▶"
     })
 })
 ]}):(()=>{const t=n===0?{fetchPriority:"high"}:{};return e.jsx("img",{src:o,alt:`Produto ${n+1}`,className:"w-full h-full object-contain pointer-events-none",draggable:!1,loading:"eager",decoding:n===0?"sync":"async",...t,width:400,height:400,onLoad:()=>L(n)})})(),
-n!==0&&!S.has(n)&&e.jsx("div",{className:"absolute inset-0 flex items-center justify-center bg-secondary",children:e.jsx(Se,{size:"md"})})
+!f(o)&&n!==0&&!S.has(n)&&e.jsx("div",{className:"absolute inset-0 flex items-center justify-center bg-secondary",children:e.jsx(Se,{size:"md"})})
 ]},n))})}),
 e.jsx("div",{className:"absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20",children:m.map((o,n)=>e.jsx("button",{onClick:t=>{t.stopPropagation(),j(n)},className:`h-2 rounded-full transition-all duration-300 ${n===l?"bg-tiktok-red w-5":"bg-foreground/30 w-2"}`},n))}),
 e.jsxs("div",{className:"absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full",children:[l+1,"/",m.length]})
