@@ -134,23 +134,38 @@ e.jsx("button",{
         left:"50%",
         top:"50%",
         transform:"translate(-50%,-50%)",
-        width:"86px",
-        height:"86px",
-        border:"0",
+        width:"88px",
+        height:"88px",
+        border:"2px solid rgba(255,255,255,.9)",
         borderRadius:"9999px",
-        background:"rgba(0,0,0,.75)",
+        background:"linear-gradient(135deg,rgba(0,242,234,.92),rgba(0,0,0,.88) 45%,rgba(255,0,80,.92))",
         color:"#fff",
-        fontSize:"42px",
-        lineHeight:"86px",
-        textAlign:"center",
+        fontSize:"0",
         zIndex:2147483647,
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
-        boxShadow:"0 8px 30px rgba(0,0,0,.45)",
-        pointerEvents:"auto"
+        boxShadow:"-8px 0 22px rgba(0,242,234,.45),8px 0 22px rgba(255,0,80,.45),0 10px 35px rgba(0,0,0,.55)",
+        pointerEvents:"auto",
+        WebkitTapHighlightColor:"transparent"
     },
-    children:"▶"
+    children:e.jsx("span",{
+        style:{
+            width:"64px",
+            height:"64px",
+            borderRadius:"9999px",
+            background:"rgba(0,0,0,.78)",
+            display:"flex",
+            alignItems:"center",
+            justifyContent:"center",
+            color:"#fff",
+            fontSize:"34px",
+            lineHeight:"64px",
+            paddingLeft:"5px",
+            boxShadow:"inset 0 0 0 1px rgba(255,255,255,.18)"
+        },
+        children:"▶"
+    })
 })
 ]}):(()=>{const t=n===0?{fetchPriority:"high"}:{};return e.jsx("img",{src:o,alt:`Produto ${n+1}`,className:"w-full h-full object-contain pointer-events-none",draggable:!1,loading:"eager",decoding:n===0?"sync":"async",...t,width:400,height:400,onLoad:()=>L(n)})})(),
 !f(o)&&n!==0&&!S.has(n)&&e.jsx("div",{className:"absolute inset-0 flex items-center justify-center bg-secondary",children:e.jsx(Se,{size:"md"})})
